@@ -15,19 +15,20 @@ class KebunController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $query = Kebun::with(['petani', 'tahapan']);
+        $status = $request->query('status');
 
+        $query = Kebun::with(['petani', 'tahapan']);
         if (! $user->isAdmin()) {
             $query->where('petani_id', $user->petani?->id ?? 0);
         }
 
         $kebun = $query->orderBy('nama_kebun')->get();
 
-        if ($status = $request->query('status')) {
+        if ($status) {
             $kebun = $kebun->filter(fn ($k) => $k->status_umur === $status)->values();
         }
 
-        return view('kebun.index', compact('kebun', 'status'));
+        return $this->tampil('index', compact('kebun', 'status'));
     }
 
     public function show(Request $request, Kebun $kebun)
@@ -39,14 +40,14 @@ class KebunController extends Controller
         $riwayat = $kebun->riwayat()->with(['tahapan', 'user'])->orderByDesc('tanggal')->orderByDesc('id')->get();
         $panduan = Panduan::where('tahapan_id', $kebun->tahapan_id)->orderBy('urutan')->get();
 
-        return view('kebun.show', compact('kebun', 'riwayat', 'panduan'));
+        return $this->tampil('show', compact('kebun', 'riwayat', 'panduan'));
     }
 
     public function create()
     {
         $kebun = new Kebun(['tahapan_id' => Tahapan::orderBy('urutan')->value('id')]);
 
-        return view('kebun.form', ['kebun' => $kebun] + $this->pilihan());
+        return view('admin.kebun.create', ['kebun' => $kebun] + $this->pilihan());
     }
 
     public function store(Request $request)
@@ -69,7 +70,7 @@ class KebunController extends Controller
 
     public function edit(Kebun $kebun)
     {
-        return view('kebun.form', compact('kebun') + $this->pilihan());
+        return view('admin.kebun.edit', compact('kebun') + $this->pilihan());
     }
 
     public function update(Request $request, Kebun $kebun)
@@ -84,6 +85,14 @@ class KebunController extends Controller
         $kebun->delete();
 
         return redirect()->route('kebun.index')->with('success', 'Data kebun dihapus.');
+    }
+
+    /** Admin memakai view di admin/kebun, petani di petani/kebun (dibuat pada tahap dashboard petani). */
+    private function tampil(string $nama, array $data)
+    {
+        $folder = auth()->user()->isAdmin() ? 'admin.kebun.' : 'petani.kebun.';
+
+        return view($folder.$nama, $data);
     }
 
     private function rules(): array

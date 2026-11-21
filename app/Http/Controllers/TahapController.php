@@ -16,7 +16,7 @@ class TahapController extends Controller
         $kebun->load(['petani', 'tahapan']);
         $daftarTahap = Tahapan::orderBy('urutan')->get();
 
-        return view('tahap.edit', compact('kebun', 'daftarTahap'));
+        return view('admin.kebun.tahap', compact('kebun', 'daftarTahap'));
     }
 
     public function update(Request $request, Kebun $kebun)

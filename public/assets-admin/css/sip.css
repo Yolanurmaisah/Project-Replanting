@@ -76,3 +76,19 @@ textarea.inp{height:auto;padding:12px 14px;min-height:90px;resize:vertical}
 .pager{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
 .pager .btn.off{opacity:.4;pointer-events:none}
 @media(max-width:700px){.row2{grid-template-columns:1fr}}
+.foot{padding:16px 32px;color:var(--mu);font-size:12px;border-top:1px solid var(--line)}
+@media(max-width:860px){.foot{padding-left:16px;padding-right:16px}}
+@media print{.foot{display:none}}
+
+/* ---- Tambahan modul kebun ---- */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 14px;border-radius:999px;background:var(--chip);font-weight:600;font-size:13px}
+.chip.on{background:var(--hero);color:#fff}
+.kv>div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+.kv>div:last-child{border-bottom:0}
+.kv span{color:var(--mu)}
+.kv b{text-align:right}
+.guide{white-space:pre-line;margin:6px 0}
+.guide-item+.guide-item{margin-top:18px}
+.two-eq{display:grid;grid-template-columns:1fr 1.4fr;gap:20px}
+@media(max-width:1000px){.two-eq{grid-template-columns:1fr}}

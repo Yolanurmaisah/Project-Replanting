@@ -29,14 +29,14 @@ class DashboardController extends Controller
             ];
             $rentang = $this->rentangUmur($kebun, $batas);
 
-            return view('dashboard.admin', compact('kebun', 'perStatus', 'siap', 'jumlahPetani', 'batas', 'rentang'));
+            return view('admin.dashboard', compact('kebun', 'perStatus', 'siap', 'jumlahPetani', 'batas', 'rentang'));
         }
 
         $kebun = $user->petani
             ? $user->petani->kebun()->with('tahapan')->get()
             : collect();
 
-        return view('dashboard.petani', compact('kebun'));
+        return view('petani.dashboard', compact('kebun'));
     }
 
     /** Kelompokkan kebun berdasarkan umur; batas atas mengikuti menu Pengaturan. */

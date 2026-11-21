@@ -1,14 +1,4 @@
-@extends('layouts.app')
-@section('title', $petani->exists ? 'Ubah Petani' : 'Tambah Petani')
-
-@section('content')
-<div class="head">
-    <div>
-        <h1>{{ $petani->exists ? 'Ubah Petani' : 'Tambah Petani' }}</h1>
-        <div class="mu">{{ $petani->exists ? 'Perbarui data anggota kelompok tani' : 'Daftarkan anggota baru kelompok tani' }}</div>
-    </div>
-</div>
-
+{{-- Form dipakai bersama oleh create.blade.php dan edit.blade.php --}}
 <form method="POST" action="{{ $petani->exists ? route('petani.update', $petani) : route('petani.store') }}" class="card" style="max-width:760px">
     @csrf
     @if($petani->exists)
@@ -61,4 +51,3 @@
         <a href="{{ route('petani.index') }}" class="btn sec">Batal</a>
     </div>
 </form>
-@endsection

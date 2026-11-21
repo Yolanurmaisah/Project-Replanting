@@ -14,12 +14,12 @@ class PetaniController extends Controller
     {
         $petani = Petani::with('user')->withCount('kebun')->orderBy('nama')->paginate(10);
 
-        return view('petani.index', compact('petani'));
+        return view('admin.petani.index', compact('petani'));
     }
 
     public function create()
     {
-        return view('petani.form', ['petani' => new Petani]);
+        return view('admin.petani.create', ['petani' => new Petani]);
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class PetaniController extends Controller
 
     public function edit(Petani $petani)
     {
-        return view('petani.form', compact('petani'));
+        return view('admin.petani.edit', compact('petani'));
     }
 
     public function update(Request $request, Petani $petani)
