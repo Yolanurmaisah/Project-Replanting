@@ -92,3 +92,12 @@ textarea.inp{height:auto;padding:12px 14px;min-height:90px;resize:vertical}
 .guide-item+.guide-item{margin-top:18px}
 .two-eq{display:grid;grid-template-columns:1fr 1.4fr;gap:20px}
 @media(max-width:1000px){.two-eq{grid-template-columns:1fr}}
+
+/* ---- Tambahan dashboard petani & notifikasi ---- */
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+a.kb{display:block;transition:transform .15s}
+a.kb:hover{transform:translateY(-2px)}
+.notif{padding:16px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.notif:last-child{border-bottom:0}
+.notif.baru{background:var(--chip);margin:0 -22px;padding:16px 22px}
+.notif .meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
