@@ -101,3 +101,9 @@ a.kb:hover{transform:translateY(-2px)}
 .notif:last-child{border-bottom:0}
 .notif.baru{background:var(--chip);margin:0 -22px;padding:16px 22px}
 .notif .meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+
+/* ---- Tambahan modul panduan ---- */
+.sec-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.row-item{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row-item:last-child{border-bottom:0}
+.row-item .txt{min-width:0}

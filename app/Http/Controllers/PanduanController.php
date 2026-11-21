@@ -12,12 +12,20 @@ class PanduanController extends Controller
     {
         $daftarTahap = Tahapan::with('panduan')->orderBy('urutan')->get();
 
-        return view('panduan.index', compact('daftarTahap'));
+        return view('admin.panduan.index', compact('daftarTahap'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('panduan.form', ['panduan' => new Panduan(['urutan' => 1]), 'daftarTahap' => Tahapan::orderBy('urutan')->get()]);
+        $panduan = new Panduan([
+            'urutan' => 1,
+            'tahapan_id' => $request->query('tahapan_id'),
+        ]);
+
+        return view('admin.panduan.create', [
+            'panduan' => $panduan,
+            'daftarTahap' => Tahapan::orderBy('urutan')->get(),
+        ]);
     }
 
     public function store(Request $request)
@@ -29,7 +37,10 @@ class PanduanController extends Controller
 
     public function edit(Panduan $panduan)
     {
-        return view('panduan.form', ['panduan' => $panduan, 'daftarTahap' => Tahapan::orderBy('urutan')->get()]);
+        return view('admin.panduan.edit', [
+            'panduan' => $panduan,
+            'daftarTahap' => Tahapan::orderBy('urutan')->get(),
+        ]);
     }
 
     public function update(Request $request, Panduan $panduan)
