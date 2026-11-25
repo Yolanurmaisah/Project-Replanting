@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ReSawit">
+<rect width="64" height="64" rx="16" fill="#A8E10C"/>
+<path d="M11.33 39.52A22 22 0 0 1 43 12.95" fill="none" stroke="#06301F" stroke-width="4" stroke-linecap="round"/>
+<polygon points="49.06,16.45 45.5,8.6 40.5,17.3" fill="#06301F" stroke="#06301F" stroke-width="2" stroke-linejoin="round"/>
+<path d="M52.67 24.48A22 22 0 0 1 21 51.05" fill="none" stroke="#06301F" stroke-width="4" stroke-linecap="round"/>
+<polygon points="14.94,47.55 18.5,55.4 23.5,46.7" fill="#06301F" stroke="#06301F" stroke-width="2" stroke-linejoin="round"/>
+<path d="M32 42V30" fill="none" stroke="#06301F" stroke-width="3" stroke-linecap="round"/>
+<path d="M32 31C26 31 22 27 21.5 22C27 22 31.5 25.5 32 31Z" fill="#06301F"/>
+<path d="M32 36C38 36 42 32 42.5 27C37 27 32.5 30.5 32 36Z" fill="#06301F"/>
+</svg>

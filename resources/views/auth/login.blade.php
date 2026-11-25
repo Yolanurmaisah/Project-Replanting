@@ -2,7 +2,7 @@
 @section('title', 'Login')
 @section('content')
 <div class="card">
-    <div class="brand" style="color:var(--tx);padding:0 0 6px"><i></i>SIP-Sawit</div>
+    <div class="brand on-light" style="color:var(--tx);padding:0 0 6px"><img class="logo-ic" src="{{ asset('assets-admin/img/logo-icon.svg') }}" alt="Logo ReSawit"><span><em>Re</em>Sawit</span></div>
     <p class="mu" style="margin:0 0 20px">Sistem pemantauan & panduan replanting kelapa sawit</p>
 
     @if($errors->any())

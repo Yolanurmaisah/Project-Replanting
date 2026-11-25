@@ -5,5 +5,5 @@
         <svg class="ic"><use href="#i-bell"/></svg>
         @if($belum)<span class="dot"></span>@endif
     </a>
-    <div class="av" title="{{ $user->name }}">{{ $inisial }}</div>
+    <a class="av" href="{{ route('profil.edit') }}" title="{{ $user->name }}">@include('layouts.admin.avatar')</a>
 </header>
