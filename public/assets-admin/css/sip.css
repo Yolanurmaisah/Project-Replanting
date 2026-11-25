@@ -107,3 +107,12 @@ a.kb:hover{transform:translateY(-2px)}
 .row-item{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .row-item:last-child{border-bottom:0}
 .row-item .txt{min-width:0}
+
+/* ---- Tambahan laporan cetak ---- */
+.print-only{display:none}
+@media print{
+  .print-only{display:block}
+  table{min-width:0;font-size:12px}
+  .card{border:0;padding:0}
+  th,td{border-bottom:1px solid #999}
+}

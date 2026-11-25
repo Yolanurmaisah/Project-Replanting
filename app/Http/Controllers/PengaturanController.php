@@ -9,9 +9,9 @@ class PengaturanController extends Controller
 {
     public function edit()
     {
-        return view('pengaturan.edit', [
-            'mendekati' => Pengaturan::ambil('batas_mendekati', 22),
-            'siap' => Pengaturan::ambil('batas_siap', 25),
+        return view('admin.pengaturan.edit', [
+            'mendekati' => (int) Pengaturan::ambil('batas_mendekati', 22),
+            'siap' => (int) Pengaturan::ambil('batas_siap', 25),
         ]);
     }
 
@@ -21,9 +21,10 @@ class PengaturanController extends Controller
             'batas_mendekati' => 'required|integer|min:1|max:60',
             'batas_siap' => 'required|integer|min:1|max:60|gt:batas_mendekati',
         ]);
+
         Pengaturan::simpan('batas_mendekati', $data['batas_mendekati']);
         Pengaturan::simpan('batas_siap', $data['batas_siap']);
 
-        return back()->with('success', 'Pengaturan ambang umur disimpan.');
+        return back()->with('success', 'Pengaturan ambang umur disimpan. Status semua kebun ikut diperbarui.');
     }
 }

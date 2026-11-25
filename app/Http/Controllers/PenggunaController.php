@@ -10,14 +10,14 @@ class PenggunaController extends Controller
 {
     public function index()
     {
-        $pengguna = User::orderBy('name')->paginate(10);
+        $pengguna = User::with('petani')->orderBy('name')->paginate(10);
 
-        return view('pengguna.index', compact('pengguna'));
+        return view('admin.pengguna.index', compact('pengguna'));
     }
 
     public function create()
     {
-        return view('pengguna.form', ['pengguna' => new User(['role' => 'admin'])]);
+        return view('admin.pengguna.create', ['pengguna' => new User(['role' => 'admin'])]);
     }
 
     public function store(Request $request)
@@ -28,6 +28,7 @@ class PenggunaController extends Controller
             'password' => 'required|string|min:6',
             'role' => 'required|in:admin,petani',
         ]);
+
         User::create($data);
 
         return redirect()->route('pengguna.index')->with('success', 'Pengguna ditambahkan.');
@@ -35,7 +36,7 @@ class PenggunaController extends Controller
 
     public function edit(User $pengguna)
     {
-        return view('pengguna.form', compact('pengguna'));
+        return view('admin.pengguna.edit', compact('pengguna'));
     }
 
     public function update(Request $request, User $pengguna)
@@ -46,9 +47,15 @@ class PenggunaController extends Controller
             'password' => 'nullable|string|min:6',
             'role' => 'required|in:admin,petani',
         ]);
+
+        if ($pengguna->id === $request->user()->id && $data['role'] !== 'admin') {
+            return back()->withInput()->withErrors(['role' => 'Anda tidak bisa mengubah peran akun Anda sendiri menjadi petani.']);
+        }
+
         if (empty($data['password'])) {
             unset($data['password']);
         }
+
         $pengguna->update($data);
 
         return redirect()->route('pengguna.index')->with('success', 'Pengguna diperbarui.');
@@ -59,6 +66,7 @@ class PenggunaController extends Controller
         if ($pengguna->id === $request->user()->id) {
             return back()->withErrors(['hapus' => 'Akun yang sedang dipakai tidak bisa dihapus.']);
         }
+
         $pengguna->delete();
 
         return redirect()->route('pengguna.index')->with('success', 'Pengguna dihapus.');

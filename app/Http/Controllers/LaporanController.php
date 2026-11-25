@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kebun;
+use App\Models\Pengaturan;
 
 class LaporanController extends Controller
 {
@@ -13,6 +14,8 @@ class LaporanController extends Controller
             ->sortByDesc('umur')
             ->values();
 
-        return view('laporan.siap', compact('kebun'));
+        $batasSiap = (int) Pengaturan::ambil('batas_siap', 25);
+
+        return view('admin.laporan.siap', compact('kebun', 'batasSiap'));
     }
 }
