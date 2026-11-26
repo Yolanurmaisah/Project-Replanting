@@ -40,7 +40,9 @@ class KebunController extends Controller
         $riwayat = $kebun->riwayat()->with(['tahapan', 'user'])->orderByDesc('tanggal')->orderByDesc('id')->get();
         $panduan = Panduan::where('tahapan_id', $kebun->tahapan_id)->orderBy('urutan')->get();
 
-        return $this->tampil('show', compact('kebun', 'riwayat', 'panduan'));
+        $daftarTahap = Tahapan::orderBy('urutan')->get();
+
+        return $this->tampil('show', compact('kebun', 'riwayat', 'panduan', 'daftarTahap'));
     }
 
     public function create()

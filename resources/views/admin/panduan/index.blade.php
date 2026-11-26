@@ -1,13 +1,16 @@
 @extends('layouts.admin.app')
-@section('title', 'Panduan')
+@section('title', 'Kelola Panduan')
 
 @section('content')
 <div class="head">
     <div>
-        <h1>Panduan Replanting</h1>
-        <div class="mu">Isi panduan per tahap. Petani melihat panduan sesuai tahap kebunnya.</div>
+        <h1>Kelola Panduan</h1>
+        <div class="mu">Isi panduan per tahap. Petani membacanya di menu Panduan Replanting.</div>
     </div>
-    <a href="{{ route('panduan.create') }}" class="btn">+ Tambah Panduan</a>
+    <div class="acts">
+        <a href="{{ route('panduan.lihat') }}" class="btn sec">Lihat tampilan petani</a>
+        <a href="{{ route('panduan.create') }}" class="btn">+ Tambah Panduan</a>
+    </div>
 </div>
 
 @foreach($daftarTahap as $t)
@@ -21,8 +24,15 @@
             <div class="row-item">
                 <div class="txt">
                     <b>{{ $p->judul }}</b>
-                    <div class="mu">{{ \Illuminate\Support\Str::limit(str_replace("\n", ' ', $p->isi), 110) }}</div>
-                    <div class="hint">Sumber: {{ $p->sumber }}</div>
+                    <div class="mu">{{ count($p->poin) }} poin &middot; {{ \Illuminate\Support\Str::limit($p->poin[0] ?? '', 90) }}</div>
+                    <div class="hint">
+                        Sumber: {{ $p->sumber }}
+                        @if($p->tautan)
+                            &middot; <a href="{{ $p->tautan }}" target="_blank" rel="noopener noreferrer" style="color:var(--okc);font-weight:700">Buka sumber &#8599;</a>
+                        @else
+                            &middot; <span style="color:var(--rc)">belum ada tautan</span>
+                        @endif
+                    </div>
                 </div>
                 <div class="acts">
                     <a href="{{ route('panduan.edit', $p) }}" class="btn sec sm">Ubah</a>

@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/profil', [ProfilController::class, 'update'])->name('profil.update');
     Route::delete('/profil/foto', [ProfilController::class, 'hapusFoto'])->name('profil.foto.hapus');
 
+    Route::get('/panduan-replanting', [PanduanController::class, 'lihat'])->name('panduan.lihat');
+
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
     Route::post('/notifikasi/baca-semua', [NotifikasiController::class, 'bacaSemua'])->name('notifikasi.baca-semua');
     Route::post('/notifikasi/{notifikasi}/baca', [NotifikasiController::class, 'baca'])->name('notifikasi.baca');

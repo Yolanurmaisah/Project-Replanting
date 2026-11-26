@@ -30,13 +30,20 @@
     <div class="fld">
         <label for="isi">Isi panduan</label>
         <textarea class="inp" id="isi" name="isi" style="min-height:220px" required>{{ old('isi', $panduan->isi) }}</textarea>
-        <span class="hint">Tekan Enter untuk baris baru; susunan baris dipertahankan saat ditampilkan ke petani.</span>
+        <span class="hint">Tulis satu poin per baris. Tiap baris akan tampil sebagai butir bercentang.</span>
     </div>
 
-    <div class="fld">
-        <label for="sumber">Sumber rujukan resmi</label>
-        <input class="inp" id="sumber" name="sumber" value="{{ old('sumber', $panduan->sumber) }}" required>
-        <span class="hint">Wajib diisi. Contoh: Permentan No. 03 Tahun 2022, atau pedoman PPKS (cantumkan judul dan tahun).</span>
+    <div class="row2">
+        <div class="fld">
+            <label for="sumber">Sumber rujukan resmi</label>
+            <input class="inp" id="sumber" name="sumber" value="{{ old('sumber', $panduan->sumber) }}" required>
+            <span class="hint">Wajib. Contoh: Permentan No. 3 Tahun 2022.</span>
+        </div>
+        <div class="fld">
+            <label for="tautan">Tautan ke dokumen sumber <span class="mu" style="font-weight:400">(opsional)</span></label>
+            <input class="inp" type="url" id="tautan" name="tautan" value="{{ old('tautan', $panduan->tautan) }}" placeholder="https://...">
+            <span class="hint">Alamat lengkap diawali https://. Muncul sebagai tombol “Buka sumber”.</span>
+        </div>
     </div>
 
     <div class="acts" style="justify-content:flex-start;margin-top:8px">

@@ -17,6 +17,11 @@
     </div>
 </div>
 
+<section class="card">
+    <h2 style="margin-bottom:16px">Posisi Tahap Replanting</h2>
+    @include('panduan._stepper', ['daftarTahap' => $daftarTahap, 'aktif' => [$kebun->tahapan_id]])
+</section>
+
 <section class="two-eq">
     <div class="card">
         <h2 style="margin-bottom:8px">Informasi Kebun</h2>
@@ -34,17 +39,12 @@
     </div>
 
     <div class="card">
-        <h2>Panduan: {{ $kebun->tahapan->nama_tahap }}</h2>
-        <div class="mu" style="margin-bottom:12px">Sesuai tahap kebun saat ini</div>
-        @forelse($panduan as $p)
-            <div class="guide-item">
-                <b>{{ $p->judul }}</b>
-                <div class="guide">{{ $p->isi }}</div>
-                <div class="hint">Sumber: {{ $p->sumber }}</div>
-            </div>
-        @empty
-            <div class="mu">Belum ada panduan untuk tahap ini.</div>
-        @endforelse
+        <div class="sec-head">
+            <h2>Panduan: {{ $kebun->tahapan->nama_tahap }}</h2>
+            <a href="{{ route('panduan.lihat') }}#tahap-{{ $kebun->tahapan_id }}" class="btn sec sm">Semua panduan</a>
+        </div>
+        <div class="mu" style="margin-bottom:14px">Sesuai tahap kebun saat ini</div>
+        @include('panduan._kartu', ['panduan' => $panduan])
     </div>
 </section>
 

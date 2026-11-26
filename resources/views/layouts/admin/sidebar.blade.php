@@ -3,12 +3,13 @@
 
     <div class="grp">MENU</div>
     <a class="nav {{ request()->routeIs('dashboard') ? 'on' : '' }}" href="{{ route('dashboard') }}"><svg class="ic"><use href="#i-home"/></svg>Dashboard</a>
+    <a class="nav {{ request()->routeIs('panduan.lihat') ? 'on' : '' }}" href="{{ route('panduan.lihat') }}"><svg class="ic"><use href="#i-book"/></svg>Panduan Replanting</a>
 
     @if($admin)
         <div class="grp">DATA MASTER</div>
         <a class="nav {{ request()->routeIs('petani.*') ? 'on' : '' }}" href="{{ route('petani.index') }}"><svg class="ic"><use href="#i-users"/></svg>Data Petani</a>
         <a class="nav {{ request()->routeIs('kebun.*') ? 'on' : '' }}" href="{{ route('kebun.index') }}"><svg class="ic"><use href="#i-leaf"/></svg>Data Kebun</a>
-        <a class="nav {{ request()->routeIs('panduan.*') ? 'on' : '' }}" href="{{ route('panduan.index') }}"><svg class="ic"><use href="#i-book"/></svg>Panduan</a>
+        <a class="nav {{ request()->routeIs('panduan.index', 'panduan.create', 'panduan.edit') ? 'on' : '' }}" href="{{ route('panduan.index') }}"><svg class="ic"><use href="#i-book"/></svg>Kelola Panduan</a>
 
         <div class="grp">MONITORING</div>
         <a class="nav {{ request()->routeIs('notifikasi.*') ? 'on' : '' }}" href="{{ route('notifikasi.index') }}"><svg class="ic"><use href="#i-bell"/></svg>Notifikasi @if($belum)<span class="cnt">{{ $belum }}</span>@endif</a>

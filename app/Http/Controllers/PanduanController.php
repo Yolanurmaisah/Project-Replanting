@@ -8,6 +8,26 @@ use Illuminate\Http\Request;
 
 class PanduanController extends Controller
 {
+    /** Halaman baca panduan untuk semua pengguna yang login. */
+    public function lihat(Request $request)
+    {
+        $daftarTahap = Tahapan::with('panduan')->orderBy('urutan')->get();
+
+        $user = $request->user();
+        $tahapKebun = ($user->isAdmin() || ! $user->petani)
+            ? []
+            : $user->petani->kebun()->pluck('tahapan_id')->unique()->values()->all();
+
+        $rujukan = $daftarTahap->flatMap(fn ($t) => $t->panduan)
+            ->filter(fn ($p) => $p->tautan)
+            ->unique('tautan')
+            ->values();
+
+        return view('panduan.lihat', compact('daftarTahap', 'tahapKebun', 'rujukan'));
+    }
+
+    // ---------- Kelola panduan (khusus admin) ----------
+
     public function index()
     {
         $daftarTahap = Tahapan::with('panduan')->orderBy('urutan')->get();
@@ -64,6 +84,7 @@ class PanduanController extends Controller
             'judul' => 'required|string|max:150',
             'isi' => 'required|string',
             'sumber' => 'required|string|max:255',
+            'tautan' => 'nullable|url|max:500',
             'urutan' => 'required|integer|min:1',
         ];
     }
